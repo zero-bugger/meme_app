@@ -1,0 +1,35 @@
+<%- include("partials/header") %>
+
+<div class="ui main text container segment">
+		<h2>
+		<%= meme.title %>
+	  </h2>	
+	<img src="<%= meme.image %>" >
+	<p> 
+		
+		<em><%= meme.author.username %></em>  
+	</p>
+	<p>
+		<a class= "btn btn-success" href="/memes/<%= meme._id %>/comments/new">Click to add Comments</a>
+	</p>
+			<h4>
+			Comments	
+			</h4>
+	<% meme.comments.forEach(function(comment){ %>
+	
+			<p>
+				<strong><%=comment.author.username%></strong> - <%=comment.text%>
+			</p>
+	<% }) %>
+	<!-- <form  action="/memes/<%=meme._id%>?_method=DELETE" method="POST">
+		<button class="ui red basic button">
+			DELETE 
+		</button>
+		
+	</form>
+	<br>
+	<a href="/memes/<%= meme._id %>/edit" class="ui blue basic button">UPDATE</a> -->
+		
+</div>
+
+<%- include("partials/footer") %>

@@ -1,0 +1,20 @@
+<%- include("partials/header") %>
+
+
+<% memes.forEach(function(meme){ %>
+
+	<div class="ui main text container segment">
+		<h2>
+		<%= meme.title %>
+	  </h2>	
+	
+	<a href="/memes/<%= meme._id %>"><img src="<%= meme.image %>" ></a>
+	<p>
+		<em><%= meme.author.username %></em>	
+	</p>
+	</div>
+
+
+<% }) %>
+
+<%- include("partials/footer") %>

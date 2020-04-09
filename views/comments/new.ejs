@@ -1,0 +1,23 @@
+<%- include("../partials/header") %>
+
+<div class="ui main text container segment">
+	<h1>
+		Add Comments to <%= meme.title %>
+	</h1>
+	<form  action="/memes/<%= meme._id %>/comments" method="POST">
+	
+		<div class="form-group">
+			<input  input class="form-control"  type="text" name="comment[text]" placeholder="comments">
+		</div>	
+		
+		<button class="btn btn-primary">
+			Submit
+		</button>
+	
+	</form>
+	
+</div>
+
+
+
+<%- include("../partials/footer") %>
