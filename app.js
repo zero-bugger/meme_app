@@ -45,10 +45,10 @@ app.use(function(req,res,next){
 
 // mongoose.connect("mongodb://localhost:27017/memeapp",{useNewUrlParser:true});
 mongoose.connect("mongodb+srv://zerobugger:613bbchz123ccmeme@cluster0-2dcwv.mongodb.net/test?retryWrites=true&w=majority//",
-				// {
-				//  useNewUrlParser:true,
-				//  useCreateIndex: true
-				// }
+				{
+				 useNewUrlParser:true,
+				 useCreateIndex: true
+				}
 				); 
 
 //Routers
