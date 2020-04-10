@@ -21,7 +21,7 @@ var memeRoute=require('./routes/memeroute');
 
 //Passport configuration//
 app.use(require("express-session")({
-	secret:"I love Komal",
+	secret:"I love programming",
 	resave:false,
 	saveUninitialized:false
 }));
