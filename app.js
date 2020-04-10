@@ -20,20 +20,20 @@ var memeRoute=require('./routes/memeroute');
 //APP Setup //
 
 //Passport configuration//
-// app.use(require("express-session")({
-// 	secret:"I love programming",
-// 	resave:false,
-// 	saveUninitialized:false
-// }));
-
-app.use(require("cookie-session")({
-	name: 'session',
-    keys: ['key1', 'key2']
+app.use(require("express-session")({
+	secret:"I love programming",
+	resave:false,
+	saveUninitialized:false
 }));
 
-app.use(function (req, res, next) {
-  req.sessionOptions.maxAge = req.session.maxAge || req.sessionOptions.maxAge
-});
+// app.use(require("cookie-session")({
+// 	name: 'session',
+//     keys: ['key1', 'key2']
+// }));
+
+// app.use(function (req, res, next) {
+//   req.sessionOptions.maxAge = req.session.maxAge || req.sessionOptions.maxAge
+// });
 
 app.use(passport.initialize());
 app.use(passport.session());
