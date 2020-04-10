@@ -20,11 +20,20 @@ var memeRoute=require('./routes/memeroute');
 //APP Setup //
 
 //Passport configuration//
-app.use(require("express-session")({
-	secret:"I love programming",
-	resave:false,
-	saveUninitialized:false
+// app.use(require("express-session")({
+// 	secret:"I love programming",
+// 	resave:false,
+// 	saveUninitialized:false
+// }));
+
+app.use(require("cookies-session")({
+	name: 'session',
+    keys: ['key1', 'key2']
 }));
+
+app.use(function (req, res, next) {
+  req.sessionOptions.maxAge = req.session.maxAge || req.sessionOptions.maxAge
+});
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -47,8 +56,8 @@ app.use(function(req,res,next){
 mongoose.connect("mongodb+srv://zerobugger:613bbchz123ccmeme@cluster0-2dcwv.mongodb.net/test?retryWrites=true&w=majority//",
 				{
 				 useNewUrlParser:true,
-				 useCreateIndex: true,
-				 useUnifiedTopology: true
+				 useCreateIndex:true,
+				 useUnifiedTopology:true
 				}
 				); 
 
