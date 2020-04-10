@@ -26,7 +26,7 @@ var memeRoute=require('./routes/memeroute');
 // 	saveUninitialized:false
 // }));
 
-app.use(require("cookies-session")({
+app.use(require("cookie-session")({
 	name: 'session',
     keys: ['key1', 'key2']
 }));
