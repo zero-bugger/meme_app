@@ -1,7 +1,7 @@
 //***** Meme App *****//
 
 //Importing libraries
-
+require('dotenv').config()
 var bodyparser= require('body-parser');
 var mongoose=require('mongoose');
 var methodoverride=require('method-override');
@@ -53,21 +53,25 @@ app.use(function(req,res,next){
 //MONGO DB SETUP//
 
 // mongoose.connect("mongodb://localhost:27017/memeapp",{useNewUrlParser:true});
-mongoose.connect("mongodb+srv://zerobugger:613bbchz123ccmeme@cluster0-2dcwv.mongodb.net/test?retryWrites=true&w=majority//",
+mongoose.connect(process.env.DATABASE,
 				{
 				 useNewUrlParser:true,
 				 useCreateIndex:true,
 				 useUnifiedTopology:true
 				}
-				); 
+				).then(()=>{
+					console.log("DB Connected!");
+				}).catch((err)=>{
+					console.log(err)
+				})		
 
 //Routers
 app.use(indexRoute);
 app.use(memeRoute);
 app.use(commentRoute);
 
+var port = process.env.PORT || 3000
 
-app.listen(3000,function(){
-	
-	console.log("Server Started ------------>")
-})
+app.listen(port,()=>{
+		console.log(`App running on port ${port}`);
+});
