@@ -2,7 +2,13 @@
 <html>
 	<head>
 	<title>MEME APP</title>
-
+		<style>
+			body {
+				background: #343a40;
+			}
+			
+		</style>
+		
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-	ui/2.4.1/semantic.min.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" >
 		<link rel="stylesheet" type="text/css" href="/app.css">
@@ -10,39 +16,44 @@
 	
    </head>
 <body>
-
-		<div class="ui secondary pointing menu">
-			<div  class="header item">MEME APP</div>
-			<a href="/"  class="active item">
-		         Home
-	  		 </a>
-			<a href="/memes/new" class="item">
+		
+			
+	
+		
+	
+		<div class="ui secondary pointing menu bg-dark">
+			<div  class="header item "><span class=" text-white" >MEME APP</span></div>
+				<a href="/"  class="active item text-white">
+		   	      Home
+	  			 </a>
+				<a href="/memes/new" class="item text-white">
 				Create
-	 			 </a>
-		  <div class="right menu">
-			<% if(!currentuser){ %>
-			  	<a href="/register" class="ui item">
-			   	 SignUp
-				</a>
-				 <a href="/login" class="ui item">
-			  	  Login
-				 </a>
-			<%  } else { %>	
+	 				 </a>
+		 	 <div class="right menu">
+				<% if(!currentuser){ %>
+				  	<a href="/register" class="ui item text-white">
+				   	 SignUp
+					</a>
+					 <a href="/login" class="ui item text-white">
+				  	  SignIN
+					 </a>
+				<%  } else { %>	
 			  	
 				
-			  		<a href="#" class="ui item">
+			  		<a href="#" class="ui item text-white">
 						Signed in as <%= currentuser.username %>
 					</a>
 			  		
 			  	
-				<a href="/logout" class="ui item">
-					Logout
-				</a>
-			<%	} %>
-		  </div>
-	
+					<a href="/logout" class="ui item text-white">
+						Logout
+					</a>
+					<%	} %>
+			  </div>
+		</div>
 
-	</div>
+
+
 		
 	
 

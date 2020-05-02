@@ -2,9 +2,10 @@ var express=require('express');
 var router=express.Router();
 var meme=require('../models/meme_connections');
 var Comment=require('../models/comments');
+var middleware = require('../middleware');
 ///////////#### COMMENTS ROUTE ########/////
 
-router.get("/memes/:id/comments/new",isloggedin,function(req,res){
+router.get("/memes/:id/comments/new",middleware.isloggedin,function(req,res){
 	meme.findById(req.params.id,function(err,memes){
 		if(err){
 			console.log(err);
@@ -19,7 +20,7 @@ router.get("/memes/:id/comments/new",isloggedin,function(req,res){
 });
 //POST COMMENTS ROUTE//
 
-router.post("/memes/:id/comments",isloggedin,function(req,res){
+router.post("/memes/:id/comments",middleware.isloggedin,function(req,res){
 	meme.findById(req.params.id,function(err,meme){
 		if(err){
 			console.log(err);
@@ -31,6 +32,7 @@ router.post("/memes/:id/comments",isloggedin,function(req,res){
 					console.log(err);
 				}
 				else{
+					console.log(comment);
 					 comment.author.id=req.user._id;
 					 comment.author.username=req.user.username;
 					 comment.save();
@@ -47,11 +49,5 @@ router.post("/memes/:id/comments",isloggedin,function(req,res){
 
 
 
-function isloggedin(req,res,next){
-	
-	if(req.isAuthenticated()){
-		return next();
-	}
-	res.redirect("/login");
-}
+
 module.exports=router;

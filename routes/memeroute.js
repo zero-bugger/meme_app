@@ -1,6 +1,7 @@
 var express=require('express');
 var router=express.Router();
 var meme=require('../models/meme_connections');
+var middleware = require('../middleware');
 
 
 //INDEX PAGE ROUTE
@@ -19,13 +20,13 @@ router.get("/memes",function(req,res){
 })
 
 //NEW PAGE ROUTE
-router.get("/memes/new", isloggedin,function(req,res){
+router.get("/memes/new", middleware.isloggedin,function(req,res){
 		res.render("new");
 });
 
 
 //CREATE PAGE ROUTE
-router.post("/memes",  isloggedin,function(req,res){
+router.post("/memes",  middleware.isloggedin,function(req,res){
 	var title=req.body.title;
 	var image=req.body.image;
 	var author={
@@ -102,11 +103,5 @@ router.get("/memes/:id/edit",function(req,res){
 // });
 
 
-function isloggedin(req,res,next){
-	
-	if(req.isAuthenticated()){
-		return next();
-	}
-	res.redirect("/login");
-}
+
 module.exports=router;

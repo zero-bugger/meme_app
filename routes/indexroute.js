@@ -2,6 +2,7 @@ var express=require('express');
 var router=express.Router();
 var passport=require('passport');
 var User=require('../models/User');
+var middleware = require('../middleware');
 
 
 //	DEFAULT PAGE ROUTE	//
@@ -21,6 +22,7 @@ router.get("/register",function(req,res){
 
 router.post("/register",function(req,res){
 	var newUser= new User({username:req.body.username});
+	console.log(newUser);
 	User.register(newUser,req.body.password,function(err,user){
 		if(err){
 			console.log(err);
@@ -37,7 +39,7 @@ router.post("/register",function(req,res){
 
 router.get("/login",function(req,res){
 	
-	res.render("login");
+	res.render("login",{message:req.flash("error")});
 	
 	
 })
@@ -53,15 +55,10 @@ router.post("/login",passport.authenticate("local",{
 router.get("/logout",function(req,res){
 	
 	req.logout();
+	
 	res.redirect("/");
 });
 
-function isloggedin(req,res,next){
-	
-	if(req.isAuthenticated()){
-		return next();
-	}
-	res.redirect("/login");
-}
+
 
 module.exports=router;
