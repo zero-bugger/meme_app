@@ -3,6 +3,7 @@ var router=express.Router();
 var meme=require('../models/meme_connections');
 var Comment=require('../models/comments');
 var middleware = require('../middleware');
+
 ///////////#### COMMENTS ROUTE ########/////
 
 router.get("/memes/:id/comments/new",middleware.isloggedin,function(req,res){

@@ -20,35 +20,31 @@ var memeRoute=require('./routes/memeroute');
 
 //APP Setup //
 
+app.set("view engine","ejs");
+app.use(bodyparser.urlencoded({extended:true}));
+app.use(methodoverride("_method"));
+app.use(flash());
+
+
 //Passport configuration//
 app.use(require("express-session")({
-	secret:"I love programming",
-	resave:false,
-	saveUninitialized:false
+    secret: "Once again Rusty wins cutest dog!",
+    resave: false,
+    saveUninitialized: false
 }));
-
-// app.use(require("cookie-session")({
-// 	name: 'session',
-//     keys: ['key1', 'key2']
-// }));
-
-// app.use(function (req, res, next) {
-//   req.sessionOptions.maxAge = req.session.maxAge || req.sessionOptions.maxAge
-// });
-app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+
 app.use(function(req,res,next){
 	res.locals.currentuser=req.user; 
-
+	
 	next();
 })
-app.set("view engine","ejs");
-app.use(bodyparser.urlencoded({extended:true}));
-app.use(methodoverride("_method"));
+
 
 
 //seeddb(); //seeding the database
@@ -75,6 +71,6 @@ app.use(commentRoute);
 
 const port = process.env.PORT || 3000
 
-app.listen(port,()=>{
+app.listen(process.env.PORT,()=>{
 		console.log(`App running on port ${port}`);
 });

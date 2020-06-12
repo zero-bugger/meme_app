@@ -38,8 +38,8 @@ router.post("/register",function(req,res){
 //login route
 
 router.get("/login",function(req,res){
-	
-	res.render("login",{message:req.flash("error")});
+	console.log(req.flash("message"));
+	res.render("login",{message: req.flash("message")});
 	
 	
 })
